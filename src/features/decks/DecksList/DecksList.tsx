@@ -5,18 +5,12 @@ import {useEffect} from 'react';
 import { setDecksAC} from '../decks-reducer';
 import {DeckItem} from './DeckItem/DeckItem';
 import {FetchDecksTC} from '../decks-thunks';
+import {useFetchDecks} from '../useFetchDecks';
 
 
 export const DecksList = () => {
-  const decks=useAppSelector((state)=>state.decks.decks)
-  const dispatch=useAppDispatch()
-useEffect(()=>{
-    dispatch(FetchDecksTC())
-  /*decksAPI.getDecks()
-      .then((res)=>{
-        dispatch(setDecksAC(res.data.items))
-      })*/
-},[])
+  const {decks}=useFetchDecks()
+
 
   return <ul className={s.list}>
     {decks.map((desk)=>(
